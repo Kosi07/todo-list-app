@@ -26,8 +26,6 @@ export default function Home() {
         <Done doneTasks={doneTasks} setDoneTasks={setDoneTasks} undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} />
       </main>
 
-      <lorem>Lorem ipsum dolor ...</lorem>
-
       <Footer />
     </>
   );

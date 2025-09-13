@@ -40,7 +40,7 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }) => {
 
                 <button
                     className='text-2xl border-1 rounded-xl p-1
-                            hover:text-white hover:cursor-pointer hover:bg-orange-200 hover:text-3xl hover:p-2 hover:border-4 hover:rounded-xl duration-400'
+                            hover:text-white hover:cursor-pointer hover:bg-orange-200 hover:text-3xl hover:p-3 hover:border-4 hover:rounded-xl duration-400'
                     onClick={addNewTask}
                 >
                     +

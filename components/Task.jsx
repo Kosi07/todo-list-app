@@ -1,25 +1,23 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Image from 'next/image';
 import uncheckedImg from '@/public/unchecked.svg';
 import checkedImg from '@/public/checked2.svg';
 import deleteImg from '@/public/delete.svg';
 
-const Task = ({taskText, doneTasks, setDoneTasks, undoneTasks, setUndoneTasks}) => {
+const Task = ({taskText, doneTasks, setDoneTasks, undoneTasks, setUndoneTasks, isDone }) => {
 
-  const [isChecked, setIsChecked] = useState(false);
+  let newCheckedState = isDone===null? false : isDone;
 
-  useEffect(() => {console.log(`Effect ;isChecked${isChecked}`)} , [isChecked]);
-
-  const moveTasksBetweenArrays = () => {
-    if(isChecked===true)
+    const moveTasksBetweenArrays = (newCheckedState) => {
+    if(newCheckedState===true)
       {
         setDoneTasks([...doneTasks, taskText])
         setUndoneTasks(undoneTasks.filter(task => task !== taskText))
       }
-      else if (isChecked===false){
+      else if (newCheckedState===false){
         setUndoneTasks([...undoneTasks, taskText])
         setDoneTasks(doneTasks.filter(task => task !== taskText))
       }
@@ -32,15 +30,17 @@ const Task = ({taskText, doneTasks, setDoneTasks, undoneTasks, setUndoneTasks}) 
                   shadow-lg shadow-orange-200/50`}
       >
         <Image 
+            id='checkbox-icon'
             className='w-1/4 h-2/3
                         hover:cursor-pointer hover:scale-160 duration-400 ease-in-out'
-            src={isChecked? checkedImg : uncheckedImg}
-            alt='checkbox'
+            src={isDone?checkedImg:uncheckedImg}
+            alt='checkbox-icon'
             onClick={ ()=>{
-                            setIsChecked(!isChecked);
-                            //console.log(`from onClick isChecked: ${isChecked}`);
+                            newCheckedState = !newCheckedState;
+                            console.log(`from onClick newCheckedState: ${newCheckedState}`);
+                            console.log(' ');
 
-                            moveTasksBetweenArrays();
+                            moveTasksBetweenArrays(newCheckedState);
                           }
                      }
         />
@@ -50,7 +50,7 @@ const Task = ({taskText, doneTasks, setDoneTasks, undoneTasks, setUndoneTasks}) 
         </div>
 
         <Image 
-            className='w-1/5 h-1/2
+            className='w-1/5 h-9/20
                         hover:cursor-pointer hover:scale-160 duration-400 ease-in-out'
             src={deleteImg}
             alt='delete icon'

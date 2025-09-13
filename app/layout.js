@@ -33,7 +33,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en' className={sfPro.variable}>
+    <html lang='en'>
       <body
         className={`antialiased ${sfPro.className} items-center bg-gray-50 w-screen
                     flex flex-col gap-15 sm:gap-16 md:gap-25 lg:gap-35`}
