@@ -3,7 +3,7 @@ import hamburgerMenuIcon from '@/public/hamburger-menu.svg'
 
 const Header = () => {
   return (
-    <header  className='w-23/25 mt-10 border-b border-t rounded-xl border-orange-400 border-dashed'>
+    <header  className='w-23/25 mt-6 border-b border-t rounded-xl border-orange-400 border-double'>
         <nav className='p-4 flex flex-row gap-9'>
             <Image
                     className='w-7 h-9 md:h-12'
