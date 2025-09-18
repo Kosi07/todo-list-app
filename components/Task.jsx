@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 import Image from 'next/image';
 import uncheckedImg from '@/public/unchecked.svg';
 import checkedImg from '@/public/checked2.svg';
