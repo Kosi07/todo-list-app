@@ -1,4 +1,3 @@
-import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
 import { sfPro } from '@/hooks/useSpecialFonts';
 
@@ -9,7 +8,6 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
     <html lang='en'>
       <body
         className={`antialiased ${sfPro.className} items-center bg-gray-50 w-screen
@@ -18,6 +16,5 @@ export default function RootLayout({ children }) {
         {children}
       </body>
     </html>
-    </ClerkProvider>
   );
 }
