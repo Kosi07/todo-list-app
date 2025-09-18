@@ -40,7 +40,7 @@ const Task = ({index, taskText, doneTasks, setDoneTasks, undoneTasks, setUndoneT
     if (isDone===true) return; // Prevent editing if the task is marked as done
     const editedText = prompt('Edit your task:', taskText);
 
-    if (editedText.trim() !== ''){
+    if (editedText !== null && editedText.trim() !== ''){
       undoneTasks.map((task) => 
         {
           if (task===taskText){

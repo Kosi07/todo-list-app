@@ -15,7 +15,7 @@ const NotDone = ({ undoneTasks, doneTasks, setDoneTasks, setUndoneTasks }) => {
                 undoneTasks.map((text, index) => <Task key={`undoneTask${index+1}`} index={index} taskText={text} doneTasks={doneTasks} setDoneTasks={setDoneTasks} undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks}/>)
               : 
                 <div className='text-start w-full text-xl md:text-[22px] text-gray-500 
-                                bg-gray-100 p-8 rounded-xl'><span className={`text-orange-500 text-3xl md:text-4xl p-2 ${cookie.className}`}>Create</span>tasks and they'll appear here...</div>
+                                bg-gray-200 p-8 rounded-xl'><span className={`text-orange-500 text-3xl md:text-4xl p-2 ${cookie.className}`}>Create</span>tasks and they'll appear here...</div>
             }
         </div>
     </div>
