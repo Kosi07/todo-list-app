@@ -1,10 +1,11 @@
-# This is a [ToDoList App](https://t0d0-list-app.vercel.app/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## This is a [ToDoList App](https://t0d0-list-app.vercel.app/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 
-![alt text](./imgs/app-with-sidebar.png)
-![alt text](./imgs/app-main-page.png)
+<img src='./imgs/app-with-sidebar.png' width='50%' height='300px' />
+<br/>
+<img src='./imgs/app-main-page.png' width='50%' height='300px' />
 
-
+## Things you can do
 - Click the `+` button (or hit `Enter`) to add a task.
 - Click the red trash icon to delete a task.
 - Click the checkmark to mark a task as done.
