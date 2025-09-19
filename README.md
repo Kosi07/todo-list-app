@@ -1,9 +1,9 @@
 ## This is a [ToDoList App](https://t0d0-list-app.vercel.app/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 
-<img src='./imgs/app-with-sidebar.png' width='50%' height='300px' />
+<img src='./imgs/app-with-sidebar.png' width='50%' />
 <br/>
-<img src='./imgs/app-main-page.png' width='50%' height='300px' />
+<img src='./imgs/app-main-page.png' width='50%' />
 
 ## Things you can do
 - Click the `+` button (or hit `Enter`) to add a task.
