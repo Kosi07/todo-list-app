@@ -12,6 +12,12 @@
 - Directly click on a task's text to edit.
 - Play around with the app.
 
+## Technologies Used
+- # NextJS
+- # TailwindCSS
+- # JavaScript
+- # HTML
+
 ## ToDo
 - [x] Add a task
 - [x] Delete a task
