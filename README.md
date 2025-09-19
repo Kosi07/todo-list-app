@@ -13,10 +13,10 @@
 - Play around with the app.
 
 ## Technologies Used
-- # NextJS
-- # TailwindCSS
-- # JavaScript
-- # HTML
+- ### NextJS
+- ### TailwindCSS
+- ### JavaScript
+- ### HTML
 
 ## ToDo
 - [x] Add a task
