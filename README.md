@@ -26,3 +26,5 @@
 - [ ] Use localStorage to cache taskText.
 - [ ] Add authentication.
 - [ ] Connect a database. 
+
+- [ ] Accountability buddy feature.

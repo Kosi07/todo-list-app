@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body
         className={`antialiased ${sfPro.className} items-center bg-gray-50 w-screen
-                    flex flex-col gap-14 sm:gap-16 md:gap-22 lg:gap-25`}
+                    flex flex-col gap-10 sm:gap-16 md:gap-22 lg:gap-25`}
       >
         {children}
       </body>

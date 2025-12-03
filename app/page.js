@@ -14,7 +14,7 @@ export default function Home() {
 
   const [doneTasks, setDoneTasks] = useState([]); //state for done tasks
 
-  const [moveIn, setMoveIn] = useState(true);
+  const [moveIn, setMoveIn] = useState(false);
 
   return (
     <>
@@ -29,6 +29,10 @@ export default function Home() {
                         ${moveIn? '' : 'hidden'} duration-450 ease-in `}
               onClick={()=>setMoveIn(false)}
         ></div>
+
+        <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-500 via-yellow-300 via-50% to-red-500 bg-clip-text text-transparent">
+          Tasks
+        </h1>
         
         <CreateNewTask undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} />
 

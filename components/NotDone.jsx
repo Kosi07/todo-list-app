@@ -6,8 +6,8 @@ import { cookie } from '@/hooks/useSpecialFonts';
 
 const NotDone = ({ undoneTasks, doneTasks, setDoneTasks, setUndoneTasks }) => {
   return (
-     <div className='my-8 w-full flex flex-col items-center gap-3'>
-        <span className='text-start w-7/10 text-2xl lg:text-3xl text-gray-500'>Not Done ❌</span>
+     <div className='my-4 w-full flex flex-col items-center gap-3'>
+        <span className='text-start w-7/10 text-2xl lg:text-3xl text-gray-500'>In Progress 🚧🔨</span>
 
         <div className='tasks flex flex-col items-center gap-4 w-6/10 min-w-[340px]'>
             {
