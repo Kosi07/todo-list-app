@@ -50,7 +50,7 @@ const Task = ({index, taskText, doneTasks, setDoneTasks, undoneTasks, setUndoneT
 
   return (
     <div 
-      className={`h-28 w-2/3 min-w-[340px] max-w-[1000px] font-[415] rounded-2xl bg-white border border-gray-200  
+      className={`h-20 w-2/3 min-w-[340px] max-w-[1000px] font-[415] rounded-2xl bg-white border border-gray-200  
                   flex items-center flex-row gap-3 p-2
                   shadow-lg shadow-orange-200/50
                   hover:bg-gray-100 duration-400 ease-in`}

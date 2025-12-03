@@ -16,7 +16,7 @@ const Header = ({ setMoveIn }) => {
             <h1 
                 className='w-full text-start text-4xl font-[900]
                             sm:text-5xl sm:text-center md:text-6xl lg:text-7xl'>
-                ToDo List
+                ToDo
             </h1>
         </nav>
     </header>

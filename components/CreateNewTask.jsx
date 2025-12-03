@@ -22,14 +22,14 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }) => {
     };
 
   return (
-        <div className='h-20 w-2/3 min-w-[340px] max-w-[1000px] rounded-2xl bg-orange-300 flex items-center mb-13 sticky top-3
+        <div className='h-20 w-2/3 min-w-[340px] max-w-[1000px] rounded-2xl bg-linear-to-r from-orange-500 via-orange-300 to-orange-400 flex items-center mb-13 sticky top-3
                     shadow-lg sm:text-2xl md:text-3xl lg:text-4xl'>
             <div 
                 className='flex justify-between items-center p-4 w-full'>
                 <input 
                     id='taskInputValue'
                     autoComplete='on'
-                    className='w-18/25 p-1 pl-1 rounded-xl font-bold
+                    className='w-8/10 p-1 pl-1 rounded-xl font-bold focus:outline-none text-white
                             hover:bg-orange-200 hover:p-2 duration-300 ease-in-out'
                     type='text'
                     value={inputValue}

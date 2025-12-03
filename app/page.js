@@ -16,6 +16,8 @@ export default function Home() {
 
   const [moveIn, setMoveIn] = useState(false);
 
+  const [showUndone, setShowUndone] = useState(true);
+
   return (
     <>
       <Header setMoveIn={setMoveIn}/>
@@ -29,16 +31,37 @@ export default function Home() {
                         ${moveIn? '' : 'hidden'} duration-450 ease-in `}
               onClick={()=>setMoveIn(false)}
         ></div>
-
-        <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-500 via-yellow-300 via-50% to-red-500 bg-clip-text text-transparent">
-          Tasks
-        </h1>
         
         <CreateNewTask undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} />
 
-        <NotDone doneTasks={doneTasks} setDoneTasks={setDoneTasks} undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} />
+        <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-500 via-yellow-300 via-50% to-red-500 bg-clip-text text-transparent">
+          Tasks
+        </h2>
 
-        <Done doneTasks={doneTasks} setDoneTasks={setDoneTasks} undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} />
+        <div className='w-17/18 px-1 py-4 flex flex-row gap-1 border-b-[0.4px] border-gray-400'>
+          <span
+          className={`text-center w-1/2 text-2xl lg:text-3xl
+                  ${showUndone?'text-black font-bold': 'text-gray-500'} duration-100 ease-out`}
+          onClick={()=>setShowUndone(true)}
+          >
+            In Progress 🚧🔨
+          </span>
+
+          <span 
+            className={`text-center w-1/2 text-2xl lg:text-3xl
+                    ${showUndone? 'text-gray-500' : 'text-black font-bold'} duration-100 ease-out`}
+            onClick={()=>setShowUndone(false)}
+          >
+            Done  ✅
+          </span>
+        </div>
+
+        {showUndone?
+          <NotDone doneTasks={doneTasks} setDoneTasks={setDoneTasks} undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} />
+        :
+          <Done doneTasks={doneTasks} setDoneTasks={setDoneTasks} undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} />
+        }
+
       </main>
 
       <Footer />
