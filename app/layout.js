@@ -3,7 +3,7 @@ import { sfPro } from '@/hooks/useSpecialFonts';
 
 export const metadata = {
   title: 'todo-list',
-  description: '',
+  description: 'Take bite-sized steps towards your goals.',
 };
 
 export default function RootLayout({ children }) {

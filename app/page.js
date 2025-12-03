@@ -40,7 +40,7 @@ export default function Home() {
 
         <div className='w-17/18 px-1 py-4 flex flex-row gap-1 border-b-[0.4px] border-gray-400'>
           <span
-          className={`text-center w-1/2 text-2xl lg:text-3xl
+          className={`text-center w-1/2 text-xl lg:text-2xl
                   ${showUndone?'text-black font-bold': 'text-gray-500'} duration-100 ease-out`}
           onClick={()=>setShowUndone(true)}
           >
@@ -48,7 +48,7 @@ export default function Home() {
           </span>
 
           <span 
-            className={`text-center w-1/2 text-2xl lg:text-3xl
+            className={`text-center w-1/2 text-xl lg:text-2xl
                     ${showUndone? 'text-gray-500' : 'text-black font-bold'} duration-100 ease-out`}
             onClick={()=>setShowUndone(false)}
           >
