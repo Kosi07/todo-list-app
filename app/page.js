@@ -1,11 +1,12 @@
 'use client';
 
+import { useState } from 'react';
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CreateNewTask from '@/components/CreateNewTask';
 import Done from '@/components/Done';
 import NotDone from '@/components/NotDone';
-import { useState } from 'react';
 import SidebarMenu from '@/components/SidebarMenu';
 
 export default function Home() { 
@@ -38,7 +39,7 @@ export default function Home() {
           Tasks
         </h2>
 
-        <div className='w-17/18 px-1 py-4 flex flex-row gap-1 border-b-[0.4px] border-gray-400'>
+        <div className='w-19/20 px-1 py-4 flex flex-row gap-1 border-b-[0.4px] border-gray-400 [&>span]:hover:cursor-pointer'>
           <span
           className={`text-center w-1/2 text-xl lg:text-2xl
                   ${showUndone?'text-black font-bold': 'text-gray-500'} duration-100 ease-out`}
