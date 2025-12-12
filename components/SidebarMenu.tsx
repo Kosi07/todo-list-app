@@ -16,15 +16,15 @@ const SidebarMenu = ({ moveIn, setMoveIn }
 
         <hr className="border-1 border-white w-full mb-8"/>
 
-        {session && session?.user?
+        {session?
 
             <div className='flex flex-col gap-4 mt-4'>
                 <a href=''>
                     <div className='w-30 h-30 
                                     text-orange-500 text-6xl bg-white border border-black border-dashed rounded-full
-                                    flex items-center justify-center'>{session?.user?.name[0]}</div>
+                                    flex items-center justify-center'>{/*session?.user?.name[0]*/}</div>
                 </a>
-                <span>{session?.user?.name}</span>
+                <span>{/* session?.user?.name */}</span>
                 <button className='w-35 h-15 bg-orange-500 text-white p-2 rounded-3xl'>Sign out</button>
             </div>
            

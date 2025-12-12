@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import uncheckedImg from '@/public/unchecked.svg';
 import checkedImg from '@/public/checked2.svg';
-import deleteImg from '@/public/delete.svg';
+import trashIcon from '@/public/delete.svg';
 
 const Task = ({ index, taskText, doneTasks, setDoneTasks, undoneTasks, setUndoneTasks, isDone }
   :
@@ -90,7 +90,7 @@ const Task = ({ index, taskText, doneTasks, setDoneTasks, undoneTasks, setUndone
             className='w-1/5 h-9/20 bg-red-500 rounded-xl
                         hover:cursor-pointer hover:bg-red-400 active:scale-120 hover:shadow-lg hover:scale-120 duration-400 ease-in-out'
             onClick={()=>deleteTask()}
-            src={deleteImg}
+            src={trashIcon}
             alt='delete icon'
             title='Delete task'
         />
