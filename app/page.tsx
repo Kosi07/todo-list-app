@@ -11,9 +11,9 @@ import SidebarMenu from '@/components/SidebarMenu';
 
 export default function Home() { 
 
-  const [undoneTasks, setUndoneTasks] = useState([]);
+  const [undoneTasks, setUndoneTasks] = useState(['Check this message as done']);
 
-  const [doneTasks, setDoneTasks] = useState([]); //state for done tasks
+  const [doneTasks, setDoneTasks] = useState<string[]>([]);
 
   const [moveIn, setMoveIn] = useState(false);
 

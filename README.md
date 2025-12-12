@@ -23,8 +23,10 @@
 - [x] Delete a task
 - [x] Edit a task
 - [x] Mark as done.
-- [ ] Use localStorage to cache taskText.
 - [ ] Add authentication.
-- [ ] Connect a database. 
+- [ ] Connect to MongoDB.
+
+-[ ] Text fade-in and fade-out animation to prompt the user to type in the CreateNewTask input
+-[ ] Task suggestions the way Google does search suggestions
 
 - [ ] Accountability buddy feature.

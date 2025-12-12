@@ -1,12 +1,16 @@
 import './globals.css';
-import { sfPro } from '@/hooks/useSpecialFonts';
+import { sfPro } from '@/fonts';
 
 export const metadata = {
   title: 'todo-list',
   description: 'Take bite-sized steps towards your goals.',
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>)  {
   return (
     <html lang='en'>
       <body

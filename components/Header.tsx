@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import hamburgerMenuIcon from '@/public/hamburger-menu.svg'
 
-const Header = ({ setMoveIn }) => {
+const Header = ({ setMoveIn }: { setMoveIn: React.Dispatch<React.SetStateAction<boolean>> }) => {
   return (
     <header  className='w-23/25 mt-6 border-b border-t rounded-xl border-orange-400 border-double'>
         <nav className='p-4 flex flex-row gap-9'>
@@ -10,7 +10,7 @@ const Header = ({ setMoveIn }) => {
                                 hover:cursor-pointer'
                     src={hamburgerMenuIcon}
                     alt='hamburger menu icon' 
-                    onClick={setMoveIn}
+                    onClick={() => setMoveIn(true)}
             />
 
             <h1 

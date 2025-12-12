@@ -1,21 +1,20 @@
 'use client';
 
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 
-const CreateNewTask = ({ undoneTasks, setUndoneTasks }) => {
+const CreateNewTask = ({ undoneTasks, setUndoneTasks }:{undoneTasks: Array<string>, setUndoneTasks: React.Dispatch<React.SetStateAction<string[]>>}) => {
     
     const [inputValue, setInputValue] = useState('');
 
     function addNewTask(){
         if (inputValue.trim().length>0){
             setUndoneTasks([...undoneTasks, inputValue]);
-            //undoneTasks.push(inputValue) // It works but React may not detect the change and re-render the component.
 
-            setInputValue(''); //clear input field
+            setInputValue(''); 
         }
     };
 
-    function handleKeyDown(e){
+    function handleKeyDown(e: KeyboardEvent<HTMLInputElement>){
         if (e.key==='Enter'){
             addNewTask();
         }
@@ -34,7 +33,7 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }) => {
                     type='text'
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    onKeyDown={handleKeyDown}
+                    onKeyDown={(e) => handleKeyDown(e)}
                     placeholder='Create a new task...'
                 />
 
