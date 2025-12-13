@@ -13,7 +13,7 @@ const NotDone = ({ undoneTasks, doneTasks, setDoneTasks, setUndoneTasks }
 }) => {
   return (
      <div className='my-4 w-full flex flex-col items-center gap-3'>
-        <div className='tasks flex flex-col items-center gap-4 w-6/10 min-w-[340px]'>
+        <div className='undone-tasks flex flex-col items-center gap-4 w-7/10 min-w-85'>
             {
               undoneTasks!=null && undoneTasks.length>0?
                 undoneTasks.map((text, index) => <Task key={`undoneTask ${text}`} index={index} taskText={text} doneTasks={doneTasks} setDoneTasks={setDoneTasks} undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks}/>)

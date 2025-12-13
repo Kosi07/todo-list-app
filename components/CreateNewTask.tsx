@@ -6,6 +6,38 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }:{undoneTasks: Array<strin
     
     const [inputValue, setInputValue] = useState('');
 
+    const [showDropDown, setShowDropDown] = useState(false);
+
+    const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([])
+
+    const allSuggestions = [
+        "Buy groceries for the week",
+        "Book dentist appointment",
+        "Plan weekend trip to the beach",
+        "Call mom about birthday plans",
+        "Finish project report by Friday",
+        "Research new laptop options",
+        "Organize my desk",
+        "Learn JS basics"
+    ];
+
+    useEffect(()=>{
+        if(inputValue.trim()===''){
+          setShowDropDown(false)
+          return
+        }
+
+        setFilteredSuggestions(allSuggestions.filter( suggestion => suggestion.toLowerCase().includes(inputValue.toLowerCase()) ))
+        setShowDropDown(true)
+    }, [inputValue])
+
+    function handleSelectDropDown(filteredSuggestion: string){
+      console.log('filteredSugg')
+      setInputValue(filteredSuggestion);
+      console.log(filteredSuggestion);
+      setShowDropDown(false);
+    }
+
     function addNewTask(){
         if (inputValue.trim().length>0){
             setUndoneTasks([...undoneTasks, inputValue]);
@@ -34,9 +66,7 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }:{undoneTasks: Array<strin
         'Buy groceries',
         'Do laundry',
         'Clean my room 🧹',
-        'Call Diddy ❤️',
         'Respond to emails',
-        'Schedule appointments',
         'Work out 💪',
         'Meal prep',
         'Call Mom & Dad ❤️',
@@ -57,7 +87,8 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }:{undoneTasks: Array<strin
           // Finished typing, wait then start deleting
           setTimeout(() => setIsDeleting(true), 2000);
         }
-      } else {
+      } 
+      else {
         // Deleting backward
         if (currentIndex > 0) {
           setDisplayedText(currentText.substring(0, currentIndex - 1));
@@ -65,7 +96,7 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }:{undoneTasks: Array<strin
         } else {
           // Finished deleting, move to next text
           setIsDeleting(false);
-          setTextArrayIndex((prev) => (prev + 1) % texts.length);
+          setTextArrayIndex((prev) => (prev + 1) % texts.length); //For an infinite loop
         }
       }
     }, speed);
@@ -75,7 +106,7 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }:{undoneTasks: Array<strin
 
 
   return (
-        <div className='h-20 w-2/3 min-w-[340px] max-w-[1000px] rounded-2xl bg-linear-to-r from-orange-500 via-orange-300 to-orange-400 flex items-center mb-13 sticky top-3
+        <div className='h-20 w-2/3 min-w-85 max-w-250 rounded-2xl bg-linear-to-r from-orange-500 via-orange-300 to-orange-400 flex flex-col items-center mb-8 sticky top-3
                     shadow-lg sm:text-2xl md:text-3xl lg:text-4xl'>
             <div 
                 className='flex justify-between items-center p-4 w-full'>
@@ -83,26 +114,44 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }:{undoneTasks: Array<strin
                     id='taskInputValue'
                     autoComplete='on'
                     className='w-8/10 p-1 pl-1 rounded-xl font-bold focus:outline-none text-white
-                            hover:bg-orange-200 hover:p-2 duration-300 ease-in-out'
+                            hover:p-2 duration-300 ease-in-out'
                     type='text'
                     value={inputValue}
                     onFocus={()=>setIsActive(false)}
-                    onBlur={()=>setIsActive(true)}
+                    onBlur={()=>{
+                                    setIsActive(true)
+                                    
+                                    setTimeout(() => setShowDropDown(false), 100) // Delay to allow click event on dropdown items to register
+                                }
+                            }
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={(e) => handleKeyDown(e)}
                     placeholder={displayedText + (isActive? '|' : '')}
                 />
 
                 <button
-                    className='text-2xl border-1 rounded-xl p-1
-                            hover:text-white hover:cursor-pointer hover:bg-orange-200 hover:text-3xl hover:p-3 hover:border-4 hover:rounded-xl duration-400'
+                    className='text-2xl border rounded-xl p-1
+                            hover:text-white hover:cursor-pointer hover:bg-orange-200 hover:p-1 hover:border-4 hover:rounded-xl duration-200'
                     onClick={addNewTask}
                 >
                     +
                 </button> 
             </div>
+
+            {showDropDown && 
+                filteredSuggestions
+                    .slice(0, 4) // Limit to top 4 suggestions
+                    .map(filteredSuggestion => 
+                        <div 
+                          key={filteredSuggestion} 
+                          className='bg-gray-300/60 rounded-lg w-full p-2 backdrop-blur-lg hover:text-white hover:bg-gray-700 hover:cursor-pointer' 
+                          onClick={()=>{console.log('onclick');handleSelectDropDown(filteredSuggestion)}}
+                        >
+                          {filteredSuggestion}
+                        </div>)
+            }
         </div>
   )
 }
 
-export default CreateNewTask;
+export default CreateNewTask; 

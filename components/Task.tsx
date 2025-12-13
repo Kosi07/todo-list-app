@@ -57,7 +57,7 @@ const Task = ({ index, taskText, doneTasks, setDoneTasks, undoneTasks, setUndone
 
   return (
     <div 
-      className={`h-20 w-2/3 min-w-[340px] max-w-[1000px] font-[415] rounded-2xl bg-white border border-gray-200  
+      className={`h-20 sm:h-30 w-2/3 min-w-85 max-w-300 font-[415] rounded-2xl bg-white border border-gray-200  
                   flex items-center flex-row gap-3 p-2
                   shadow-lg shadow-orange-200/50
                   hover:bg-gray-100 duration-400 ease-in`}
@@ -65,7 +65,7 @@ const Task = ({ index, taskText, doneTasks, setDoneTasks, undoneTasks, setUndone
         <Image 
             id='checkbox-icon'
             className='w-1/4 h-2/3
-                        hover:cursor-pointer hover:scale-130 duration-400 ease-in-out'
+                        hover:cursor-pointer hover:scale-110 duration-300 ease-in-out'
             src={isDone?checkedImg:uncheckedImg}
             alt='checkbox-icon'
             title={isDone? 'Mark as not done?' : 'Mark as done?'}
@@ -88,7 +88,7 @@ const Task = ({ index, taskText, doneTasks, setDoneTasks, undoneTasks, setUndone
 
         <Image 
             className='w-1/5 h-9/20 bg-red-500 rounded-xl
-                        hover:cursor-pointer hover:bg-red-400 active:scale-120 hover:shadow-lg hover:scale-120 duration-400 ease-in-out'
+                        hover:cursor-pointer hover:bg-red-400 active:scale-110 hover:shadow-lg hover:scale-110 duration-300 ease-in-out'
             onClick={()=>deleteTask()}
             src={trashIcon}
             alt='delete icon'

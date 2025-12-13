@@ -7,7 +7,7 @@ import { cookie } from '@/fonts';
 const Done = ({ doneTasks, undoneTasks, setUndoneTasks, setDoneTasks }:{doneTasks: Array<string>, undoneTasks: Array<string>, setUndoneTasks: React.Dispatch<React.SetStateAction<string[]>>, setDoneTasks: React.Dispatch<React.SetStateAction<string[]>>}) => {
   return (
      <div className='my-8 w-full flex flex-col items-center gap-3'>
-        <div className='completed-tasks flex flex-col items-center gap-4 w-6/10 min-w-[340px]'>
+        <div className='completed-tasks flex flex-col items-center gap-4 w-7/10 min-w-85'>
             {
               doneTasks!==null && doneTasks.length>0?
                  doneTasks.map((text, index) => <Task key={`doneTask ${text}`} index={index} taskText={text} undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} doneTasks={doneTasks} setDoneTasks={setDoneTasks} isDone={true} />)
