@@ -26,11 +26,12 @@
 - [ ] Add authentication.
 - [ ] Connect to MongoDB.
 
--[ ] Text fade-in and fade-out animation to prompt the user to type in the CreateNewTask input
--[ ] Task suggestions the way Google does search suggestions
+-[x] Typewriter effect in the CreateNewTask input
+-[x] Task suggestions the way Google does search suggestions
 
 - [ ] Accountability buddy feature.
 -- [ ] Auth setup
+   Get MongoDb uri, + google client id and google client secret
 -- [ ] Limit number of tasks to 7
 -- [ ] Tasks delete at the end of the day.How to automatically delete data from MongoDB at the end of the day.
 -- [ ] 

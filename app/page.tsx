@@ -35,7 +35,7 @@ export default function Home() {
         
         <CreateNewTask undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} />
 
-        <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-500 via-yellow-300 via-50% to-red-500 bg-clip-text text-transparent">
+        <h2 className="text-4xl sm:text-5xl font-bold bg-linear-to-r from-blue-500 via-yellow-300 via-50% to-red-500 bg-clip-text text-transparent">
           Tasks
         </h2>
 

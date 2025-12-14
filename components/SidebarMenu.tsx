@@ -1,12 +1,12 @@
-import SignUpBtn from "./SignUpBtn";
+import SignInBtn from "./SignInBtn";
 
 const SidebarMenu = ({ moveIn, setMoveIn }
     : 
     { moveIn: boolean, setMoveIn: React.Dispatch<React.SetStateAction<boolean>> }) => {
-    const session = true;
+    const session = false;
   return (
     <aside
-        className={`h-[100%] w-3/4 min-w-[250px] sm:w-1/2 sm:p-6 xl:w-1/3 p-2 bg-gray-300 left-0 top-0 z-10 flex flex-col fixed inset-0 
+        className={`h-full w-3/4 min-w-62.5 sm:w-1/2 sm:p-6 xl:w-1/3 p-2 bg-gray-300 left-0 top-0 z-10 flex flex-col fixed inset-0 
                 ${moveIn?'translate-x-0' : '-translate-x-full'} ${moveIn?'opacity-100' : 'opacity-0'} duration-300 ease-in-out`}
     >
         <span 
@@ -14,7 +14,7 @@ const SidebarMenu = ({ moveIn, setMoveIn }
                         hover:cursor-pointer hover:text-orange-600 duration-300 ease-out"
             onClick={()=>setMoveIn(false)}>X</span>
 
-        <hr className="border-1 border-white w-full mb-8"/>
+        <hr className="border border-white w-full mb-8"/>
 
         {session?
 
@@ -30,7 +30,7 @@ const SidebarMenu = ({ moveIn, setMoveIn }
            
         : 
             <div className='flex flex-col gap-4 mt-4'>
-                <SignUpBtn />
+                <SignInBtn />
             </div>
         }
     </aside>
