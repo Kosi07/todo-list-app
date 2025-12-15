@@ -1,10 +1,15 @@
 'use client';
 
+import { useRouter } from "next/navigation";
 import { KeyboardEvent, useEffect, useState } from "react";
 
-const CreateNewTask = ({ undoneTasks, setUndoneTasks }:{undoneTasks: Array<string>, setUndoneTasks: React.Dispatch<React.SetStateAction<string[]>>}) => {
+const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
     
     const [inputValue, setInputValue] = useState('');
+
+    let taskStatus
+
+    const router = useRouter();
 
     const [showDropDown, setShowDropDown] = useState(false);
 
@@ -39,10 +44,12 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }:{undoneTasks: Array<strin
     }
 
     function addNewTask(){
-        if (inputValue.trim().length>0){
-            setUndoneTasks([...undoneTasks, inputValue]);
+        taskStatus = 'in-progress'
+        if (inputValue.trim()!==''){
+            saveToMongoDb(inputValue, taskStatus)
+            fetchTasks()
 
-            setInputValue(''); 
+            setInputValue('');
         }
     };
 
@@ -104,6 +111,37 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }:{undoneTasks: Array<strin
     return () => clearTimeout(timeout);
   }, [currentIndex, isDeleting, textArrayIndex, isActive]);
 
+  const saveToMongoDb = async(taskText:string,taskStatus:string) => {
+    try{
+      const response = await fetch('/api/tasks', {
+         method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  taskText,
+                  taskStatus,
+                })
+      })
+
+      const data = await response.json()
+
+      if(response.ok){
+        alert('Success! Task added!') //Toast notification should be here
+      }
+      else{
+        alert(`Failed to save.\n${data.error}`);
+        if(response.status===401){
+          console.log(response.status)
+          router.push('/sign-in')
+        }
+      }
+
+      return response.ok
+    }
+    catch(err){
+      console.error('Error saving to MongoDB ', err)
+    }
+  }
+
 
   return (
         <div className='h-20 w-2/3 min-w-85 max-w-250 rounded-2xl bg-linear-to-r from-orange-500 via-orange-300 to-orange-400 flex flex-col items-center mb-8 sticky top-3
@@ -130,7 +168,7 @@ const CreateNewTask = ({ undoneTasks, setUndoneTasks }:{undoneTasks: Array<strin
                 />
 
                 <button
-                    className='text-2xl border rounded-xl p-1
+                    className='text-2xl border border-double rounded-xl p-1 shadow-lg
                             hover:text-white hover:cursor-pointer hover:bg-orange-200 hover:p-1 hover:border-4 hover:rounded-xl duration-200'
                     onClick={addNewTask}
                 >

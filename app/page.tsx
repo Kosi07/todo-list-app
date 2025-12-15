@@ -1,19 +1,44 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CreateNewTask from '@/components/CreateNewTask';
-import Done from '@/components/Done';
-import NotDone from '@/components/NotDone';
 import SidebarMenu from '@/components/SidebarMenu';
+import Task from '@/components/Task';
+
+import { cookie } from '@/fonts';
+
+export type TaskType = {
+  _id: string
+  taskText: string
+  taskStatus: string
+}
 
 export default function Home() { 
 
-  const [undoneTasks, setUndoneTasks] = useState(['Check this message as done']);
+  const [tasks, setTasks] = useState<TaskType[]>([])
 
-  const [doneTasks, setDoneTasks] = useState<string[]>([]);
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch('/api/tasks')
+      const result = await response.json()
+      
+      if (Array.isArray(result)) {
+        setTasks(result)  
+      } else {
+        console.error('Invalid response:', result)
+      }
+    } 
+    catch (err) {
+      console.error('Failed to fetch tasks:', err)
+    }
+  }
+
+  useEffect(()=>{
+    fetchTasks()
+  }, [])
 
   const [moveIn, setMoveIn] = useState(false);
 
@@ -33,7 +58,7 @@ export default function Home() {
               onClick={()=>setMoveIn(false)}
         ></div>
         
-        <CreateNewTask undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} />
+        <CreateNewTask fetchTasks={fetchTasks} />
 
         <h2 className="text-4xl sm:text-5xl font-bold bg-linear-to-r from-blue-500 via-yellow-300 via-50% to-red-500 bg-clip-text text-transparent">
           Tasks
@@ -58,9 +83,38 @@ export default function Home() {
         </div>
 
         {showUndone?
-          <NotDone doneTasks={doneTasks} setDoneTasks={setDoneTasks} undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} />
+          tasks.filter(task => task.taskStatus==='in-progress').length>0?
+            tasks.filter(task => task.taskStatus==='in-progress')
+                .map(task => 
+                  <Task key={`undoneTask${task._id}`} _id={task._id} taskText={task.taskText} taskStatus={task.taskStatus} fetchTasks={fetchTasks} />
+                )
+          :
+              <div 
+                  className='w-2/3 min-w-85 max-w-300 text-start text-xl md:text-[22px] text-gray-500 
+                            bg-gray-200 p-8 rounded-xl'
+              >
+                <span className={`text-orange-500 text-3xl md:text-4xl p-2 ${cookie.className}`}>
+                  Create
+                </span>tasks and they&apos;ll appear here...
+              </div>
+
         :
-          <Done doneTasks={doneTasks} setDoneTasks={setDoneTasks} undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks} />
+
+          tasks.filter(task => task.taskStatus==='done').length>0?
+            tasks.filter(task => task.taskStatus==='done')
+                .map(task => 
+                  <Task key={`doneTask${task._id}`} _id={task._id} taskText={task.taskText} taskStatus={task.taskStatus} fetchTasks={fetchTasks} />
+                )
+          :
+              <div 
+                  className='w-2/3 min-w-85 max-w-300 text-start text-xl md:text-[22px] text-gray-500 
+                            bg-gray-200 p-8 rounded-xl'
+              >
+                <span className={`text-orange-500 text-3xl md:text-4xl p-2 ${cookie.className}`}>
+                  Complete
+                </span>tasks and they&apos;ll appear here...
+              </div>
+
         }
 
       </main>

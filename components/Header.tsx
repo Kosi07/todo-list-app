@@ -19,7 +19,7 @@ function HamburgerIcon({ color, handleClick } : {color: string, handleClick: Rea
 
 const Header = ({ setMoveIn }: { setMoveIn: React.Dispatch<React.SetStateAction<boolean>> }) => {
   return (
-    <header  className='w-23/25 border-b rounded-xl border-orange-400 border-double'>
+    <header  className='w-full border-b rounded-xl border-orange-400 border-double'>
         <nav className='px-1 py-3 flex flex-row gap-9'>
             <HamburgerIcon
               color='text-gray-500'

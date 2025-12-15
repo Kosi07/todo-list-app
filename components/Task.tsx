@@ -1,58 +1,62 @@
-'use client';
-
 import Image from 'next/image';
 import uncheckedImg from '@/public/unchecked.svg';
 import checkedImg from '@/public/checked2.svg';
 import trashIcon from '@/public/delete.svg';
 
-const Task = ({ index, taskText, doneTasks, setDoneTasks, undoneTasks, setUndoneTasks, isDone }
-  :
-  { index: number,
-    taskText: string, 
-    doneTasks: Array<string>, 
-    setDoneTasks: React.Dispatch<React.SetStateAction<string[]>>, 
-    undoneTasks: Array<string>, setUndoneTasks: React.Dispatch<React.SetStateAction<string[]>>, 
-    isDone?: boolean}) => {
 
-  let newCheckedState : boolean|undefined = isDone===null? false : isDone;
+const Task = ({ _id, taskText, taskStatus, fetchTasks } : { _id:string, taskText: string, taskStatus: string, fetchTasks: () => Promise<void>}) => {
 
-  const moveTasksBetweenArrays = (newCheckedState:boolean) => {
-    if(newCheckedState===true)
-      {
-        setDoneTasks([...doneTasks, taskText])
-        setUndoneTasks(undoneTasks.filter(task => task !== taskText))
-      }
-      else if (newCheckedState===false){
-        setUndoneTasks([...undoneTasks, taskText])
-        setDoneTasks(doneTasks.filter(task => task !== taskText))
-      }
-  };
+  let isDone
 
-  const deleteTask = () => {
-    console.log(`from deleteTask isDone: ${isDone}`); 
-    console.log(`from deleteTask taskText: ${taskText}`);
-    console.log(' '); 
+  if(taskStatus==='done'){
+    isDone = true
+  }
+  else if(taskStatus==='in-progress'){
+    isDone = false
+  }
 
-    if(isDone===true){
-        setDoneTasks(doneTasks.filter((task) => task !== taskText))
-      }
-      else if (isDone===undefined){
-        setUndoneTasks(undoneTasks.filter((task) => task !== taskText))
-      }
+  const changeTaskStatus = async(_id:string, taskStatus:string) => {
+    const response = await fetch('/api/tasks', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          _id,
+          taskStatus,
+        }),
+      })
+
+    if(response.ok){
+      fetchTasks()
+    }
+    else{
+      alert('!Error changing task status.')
+      console.error('Error changing task status', response)
+    }
+
+  }
+
+  const deleteTask = async(_id:string) => {
+    const response = await fetch('/api/tasks', {
+                                  method: 'DELETE',
+                                          headers: { 'Content-Type': 'application/json' },
+                                          body: JSON.stringify({
+                                            _id,
+                                          })
+                                }
+    )
+
+    if(response.ok){
+      fetchTasks()
+    }
+    else{
+      console.error('Error deleting task', response)
+    }
   };
 
   const editTask = () => {
-    if (isDone===true) return; // Prevent editing if the task is marked as done
-    const editedText = prompt('Edit your task:', taskText);
-
-    if (editedText !== null && editedText.trim() !== ''){
-      undoneTasks.map((task) => 
-        {
-          if (task===taskText){
-            setUndoneTasks(undoneTasks.map((t)=> t===taskText? editedText : t))
-          }
-        })
-    }
+    console.log()
   };
 
   return (
@@ -70,11 +74,7 @@ const Task = ({ index, taskText, doneTasks, setDoneTasks, undoneTasks, setUndone
             alt='checkbox-icon'
             title={isDone? 'Mark as not done?' : 'Mark as done?'}
             onClick={ ()=>{
-                            newCheckedState = !newCheckedState;
-                            console.log(`from onClick newCheckedState: ${newCheckedState}`);
-                            console.log(' ');
-
-                            moveTasksBetweenArrays(newCheckedState);
+                            changeTaskStatus(_id, taskStatus);
                           }
                      }
         />
@@ -89,7 +89,7 @@ const Task = ({ index, taskText, doneTasks, setDoneTasks, undoneTasks, setUndone
         <Image 
             className='w-1/5 h-9/20 bg-red-500 rounded-xl
                         hover:cursor-pointer hover:bg-red-400 active:scale-110 hover:shadow-lg hover:scale-110 duration-300 ease-in-out'
-            onClick={()=>deleteTask()}
+            onClick={()=>deleteTask(_id)}
             src={trashIcon}
             alt='delete icon'
             title='Delete task'

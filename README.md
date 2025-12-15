@@ -30,8 +30,8 @@
 -[x] Task suggestions the way Google does search suggestions
 
 - [ ] Accountability buddy feature.
--- [ ] Auth setup
-   Get MongoDb uri, + google client id and google client secret
+-- [x] Auth setup
+Render tasks from MongoDB
 -- [ ] Limit number of tasks to 7
 -- [ ] Tasks delete at the end of the day.How to automatically delete data from MongoDB at the end of the day.
 -- [ ] 

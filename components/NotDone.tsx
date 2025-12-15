@@ -4,22 +4,15 @@ import Task from './Task';
 import { cookie } from '@/fonts';
 
 
-const NotDone = ({ undoneTasks, doneTasks, setDoneTasks, setUndoneTasks }
-  :
-  {undoneTasks: Array<string>, 
-  doneTasks: Array<string>, 
-  setDoneTasks: React.Dispatch<React.SetStateAction<string[]>>, 
-  setUndoneTasks: React.Dispatch<React.SetStateAction<string[]>>
-}) => {
+const NotDone = ({ undoneTasks } : {undoneTasks: string[]}) => {
   return (
      <div className='my-4 w-full flex flex-col items-center gap-3'>
         <div className='undone-tasks flex flex-col items-center gap-4 w-7/10 min-w-85'>
             {
-              undoneTasks!=null && undoneTasks.length>0?
-                undoneTasks.map((text, index) => <Task key={`undoneTask ${text}`} index={index} taskText={text} doneTasks={doneTasks} setDoneTasks={setDoneTasks} undoneTasks={undoneTasks} setUndoneTasks={setUndoneTasks}/>)
+              undoneTasks.length>0?
+                undoneTasks.map(text => <Task key={`undoneTask ${text}`} taskText={text} />)
               : 
-                <div className='text-start w-full text-xl md:text-[22px] text-gray-500 
-                                bg-gray-200 p-8 rounded-xl'><span className={`text-orange-500 text-3xl md:text-4xl p-2 ${cookie.className}`}>Create</span>tasks and they&apos;ll appear here...</div>
+                
             }
         </div>
     </div>

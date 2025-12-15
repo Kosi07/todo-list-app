@@ -10,8 +10,8 @@ import H1 from "@/components/H1";
 const SignIn = () => {
   const router = useRouter()
 
-  const handleClick = () => {
-    signInWithGoogle()
+  const handleClick = async() => {
+    await signInWithGoogle()
     router.push('/')
   }
   
