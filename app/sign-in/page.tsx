@@ -11,8 +11,7 @@ const SignIn = () => {
   const router = useRouter()
 
   const handleClick = async() => {
-    await signInWithGoogle()
-    router.push('/')
+    await signInWithGoogle().then(()=>router.push('/'))
   }
   
   return (

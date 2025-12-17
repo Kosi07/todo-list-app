@@ -7,8 +7,6 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
     
     const [inputValue, setInputValue] = useState('');
 
-    let taskStatus
-
     const router = useRouter();
 
     const [showDropDown, setShowDropDown] = useState(false);
@@ -44,12 +42,23 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
     }
 
     function addNewTask(){
-        taskStatus = 'in-progress'
+        let taskStatus = 'in-progress'
         if (inputValue.trim()!==''){
-            saveToMongoDb(inputValue, taskStatus)
-            fetchTasks()
 
-            setInputValue('');
+            saveToMongoDb(inputValue, taskStatus)
+              .then(result=>{
+                if(result===true){
+                  fetchTasks()
+                  setInputValue('')
+                }
+                else{
+                  alert('Failed to add task')
+                }
+              })
+
+        }
+        else if (inputValue.trim()===''){
+          setInputValue(displayedText.trim().replace('|', ''))
         }
     };
 
@@ -138,7 +147,7 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
       return response.ok
     }
     catch(err){
-      console.error('Error saving to MongoDB ', err)
+      return ('Error saving to MongoDB '+err)
     }
   }
 

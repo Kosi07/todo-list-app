@@ -12,7 +12,7 @@ export async function POST(req: Request){
     try{
         if(!session){
             return Response.json(
-                { error: 'Must be signed in to create tasks' }, 
+                { error: 'Must be signed in to add tasks' }, 
                 { status: 401 }
             )
         }
@@ -43,7 +43,7 @@ export async function POST(req: Request){
     catch(err){
         console.error('Error saving task', err)
         return Response.json(
-            { error: 'Failed to save resource' }, 
+            { error: 'Failed to add task' }, 
             { status: 500 }
         );
     }
@@ -57,7 +57,7 @@ export async function GET() {
     try{
         if(!session){
             return Response.json(
-                { error: 'Must be signed in to create tasks' }, 
+                { error: 'Must be signed in to view tasks' }, 
                 { status: 401 }
             )
         }
@@ -102,7 +102,7 @@ export async function PATCH(req: Request){
     try{
         if(!session){
             return Response.json(
-                { error: 'Must be signed in to create tasks' }, 
+                { error: 'Not signed in' }, 
                 { status: 401 }
             )
         }
@@ -139,9 +139,9 @@ export async function PATCH(req: Request){
         )
     }
     catch(err){
-        console.error('Error saving task', err)
+        console.error('Error updating taskStatus', err)
         return Response.json(
-            { error: 'Failed to save resource' }, 
+            { error: 'Failed to update taskStatus of task' }, 
             { status: 500 }
         );
     }
@@ -155,7 +155,7 @@ export async function DELETE(req: Request){
     try{
         if(!session){
             return Response.json(
-                { error: 'Must be signed in to create tasks' }, 
+                { error: 'Not signed in' }, 
                 { status: 401 }
             )
         }
@@ -177,9 +177,9 @@ export async function DELETE(req: Request){
         )
     }
     catch(err){
-        console.error('Error saving task', err)
+        console.error('Error deleting task', err)
         return Response.json(
-            { error: 'Failed to save resource' }, 
+            { error: 'Failed to delete task' }, 
             { status: 500 }
         );
     }
