@@ -139,7 +139,6 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
       else{
         alert(`Failed to save.\n${data.error}`);
         if(response.status===401){
-          console.log(response.status)
           router.push('/sign-in')
         }
       }

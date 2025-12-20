@@ -23,7 +23,7 @@ export async function POST(req: Request){
 
         //Connect to MongoDB
         await client.connect()
-        const db = client.db()
+        const db = client.db('app')
 
         //Save task
         const result = await db.collection('tasks').insertOne({
@@ -66,7 +66,7 @@ export async function GET() {
 
         //Connect to MongoDB
         await client.connect();
-        const db = client.db();
+        const db = client.db('app');
 
         //Get Tasks
         const tasks = await db.collection('tasks')
@@ -111,7 +111,7 @@ export async function PATCH(req: Request){
 
         //Connect to MongoDB
         await client.connect()
-        const db = client.db()
+        const db = client.db('app')
 
         //Update taskStatus
         if(taskStatus==='in-progress'){
@@ -164,7 +164,7 @@ export async function DELETE(req: Request){
 
         //Connect to MongoDB
         await client.connect()
-        const db = client.db()
+        const db = client.db('app')
 
         //Delete task
         await db.collection('tasks')
