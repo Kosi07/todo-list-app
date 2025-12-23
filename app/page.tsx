@@ -60,10 +60,6 @@ export default function Home() {
         
         <CreateNewTask fetchTasks={fetchTasks} />
 
-        <h2 className="text-4xl sm:text-5xl font-bold bg-linear-to-r from-blue-500 via-yellow-300 via-50% to-red-500 bg-clip-text text-transparent">
-          Tasks
-        </h2>
-
         <div className='w-19/20 px-1 py-4 flex flex-row gap-1 border-b-[0.4px] border-gray-400 [&>span]:hover:cursor-pointer'>
           <span
           className={`text-center w-1/2 text-xl lg:text-2xl

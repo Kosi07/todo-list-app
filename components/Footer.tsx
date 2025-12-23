@@ -2,7 +2,7 @@
 const Footer = () => {
   return (
     <footer
-          className='text-lg text-gray-800 text-center md:text-2xl lg:text-3xl xl:text-4xl'
+          className='text-lg text-gray-600 text-center md:text-lg lg:text-xl xl:text-xl'
     >
       &copy; {new Date().getFullYear()} Tackl
     </footer>

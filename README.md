@@ -32,7 +32,6 @@
 - [ ] Accountability buddy feature.
 -- [x] Auth setup
 -- [x] Render tasks from MongoDB
--- [ ] Redo UI
 -- [ ] setLoading state /animation when something is loading
 -- [ ] Limit number of tasks to 7 from server side (Don't trust client)
 -- [ ] Tasks delete at the end of the day.How to automatically delete data from MongoDB at the end of the day.

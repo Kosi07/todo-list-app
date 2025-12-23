@@ -9,8 +9,8 @@ const SidebarMenu = ({ moveIn, setMoveIn }
 
   return (
     <aside
-        className={`h-full w-3/4 min-w-62.5 sm:w-1/2 sm:p-6 xl:w-1/3 p-2 bg-gray-300 left-0 top-0 z-10 flex flex-col fixed inset-0 
-                ${moveIn?'translate-x-0' : '-translate-x-full'} ${moveIn?'opacity-100' : 'opacity-0'} duration-300 ease-in-out`}
+        className={`h-full w-3/4 min-w-62.5 sm:w-1/2 sm:p-6 xl:w-1/3 p-2 bg-gray-300 right-0 top-0 z-10 flex flex-col fixed
+                ${moveIn?'translate-x-0' : 'translate-x-full'} ${moveIn?'opacity-100' : 'opacity-0'} duration-300 ease-in-out`}
     >
         <span 
             className="text-3xl text-gray-800 text-end p-2

@@ -2,8 +2,8 @@ import './globals.css';
 import { sfPro } from '@/fonts';
 
 export const metadata = {
-  title: 'todo-list',
-  description: 'Take bite-sized steps towards your goals.',
+  title: 'Tackl',
+  description: 'Take 7 steps each day towards your goal.',
 };
 
 export default function RootLayout({

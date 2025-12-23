@@ -35,7 +35,6 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
     }, [inputValue])
 
     function handleSelectDropDown(filteredSuggestion: string){
-      console.log('filteredSugg')
       setInputValue(filteredSuggestion);
       console.log(filteredSuggestion);
       setShowDropDown(false);
@@ -78,7 +77,8 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
     if (!isActive) return;
 
     const texts = [ 
-        'Create a new task...',
+        'Seize the day!',
+        'Add a new task...',
         'Buy groceries',
         'Do laundry',
         'Clean my room 🧹',
@@ -88,6 +88,7 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
         'Call Mom & Dad ❤️',
         'Plan the week 🗓️',
         'Save the world, duh!',
+        '',
     ]
 
     const currentText = texts[textArrayIndex];
@@ -159,8 +160,8 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
                 <input 
                     id='taskInputValue'
                     autoComplete='on'
-                    className='w-8/10 p-1 pl-1 rounded-xl font-bold focus:outline-none text-white
-                            hover:p-2 duration-300 ease-in-out'
+                    className='w-18/20 p-1 pl-1 rounded-xl font-bold focus:outline-none text-white
+                            hover:cursor-text duration-300 ease-in-out'
                     type='text'
                     value={inputValue}
                     onFocus={()=>setIsActive(false)}
@@ -177,7 +178,7 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
 
                 <button
                     className='text-2xl border border-double rounded-xl p-1 shadow-lg
-                            hover:text-white hover:cursor-pointer hover:bg-orange-200 hover:p-1 hover:border-4 hover:rounded-xl duration-200'
+                            hover:text-white hover:cursor-pointer hover:bg-orange-200 hover:border-4 hover:rounded-xl duration-200'
                     onClick={addNewTask}
                 >
                     +

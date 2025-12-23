@@ -22,7 +22,6 @@ export async function POST(req: Request){
         const {taskText, taskStatus} = await req.json()
 
         //Connect to MongoDB
-        await client.connect()
         const db = client.db('app')
 
         //Save task
@@ -65,7 +64,6 @@ export async function GET() {
         const email = session.user.email
 
         //Connect to MongoDB
-        await client.connect();
         const db = client.db('app');
 
         //Get Tasks
@@ -110,7 +108,6 @@ export async function PATCH(req: Request){
         const {_id, taskStatus} = await req.json()
 
         //Connect to MongoDB
-        await client.connect()
         const db = client.db('app')
 
         //Update taskStatus
@@ -163,7 +160,6 @@ export async function DELETE(req: Request){
         const {_id } = await req.json()
 
         //Connect to MongoDB
-        await client.connect()
         const db = client.db('app')
 
         //Delete task
