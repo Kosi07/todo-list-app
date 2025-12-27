@@ -63,7 +63,7 @@ export default function Home() {
         <div className='w-19/20 px-1 py-4 flex flex-row gap-1 border-b-[0.4px] border-gray-400 [&>span]:hover:cursor-pointer'>
           <span
           className={`text-center w-1/2 text-xl lg:text-2xl
-                  ${showUndone?'text-black font-bold': 'text-gray-500'} duration-100 ease-out`}
+                  ${showUndone?'text-black font-bold underline underline-offset-6': 'text-gray-500'} duration-100 ease-out`}
           onClick={()=>setShowUndone(true)}
           >
             In Progress 🚧🔨
@@ -71,7 +71,7 @@ export default function Home() {
 
           <span 
             className={`text-center w-1/2 text-xl lg:text-2xl
-                    ${showUndone? 'text-gray-500' : 'text-black font-bold'} duration-100 ease-out`}
+                    ${showUndone? 'text-gray-500' : 'text-black font-bold underline underline-offset-6'} duration-100 ease-out`}
             onClick={()=>setShowUndone(false)}
           >
             Done  ✅
