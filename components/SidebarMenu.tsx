@@ -3,13 +3,16 @@ import SignInBtn from "./SignInBtn";
 
 const SidebarMenu = ({ moveIn, setMoveIn }
     : 
-    { moveIn: boolean, setMoveIn: React.Dispatch<React.SetStateAction<boolean>> }) => {
+    { 
+        moveIn: boolean, 
+        setMoveIn: React.Dispatch<React.SetStateAction<boolean>> 
+    }) => {
     const session = authClient.useSession()
     const user = session?.data?.user
 
   return (
     <aside
-        className={`h-full w-3/4 min-w-62.5 sm:w-1/2 sm:p-6 xl:w-1/3 p-2 bg-gray-300 right-0 top-0 z-10 flex flex-col fixed
+        className={`h-full w-2/3 min-w-62.5 sm:w-1/2 sm:p-6 xl:w-1/3 p-2 bg-gray-300 right-0 top-0 z-20 flex flex-col fixed
                 ${moveIn?'translate-x-0' : 'translate-x-full'} ${moveIn?'opacity-100' : 'opacity-0'} duration-300 ease-in-out`}
     >
         <span 
@@ -21,7 +24,7 @@ const SidebarMenu = ({ moveIn, setMoveIn }
 
         {user?
 
-            <div className='flex flex-col gap-4 mt-4'>
+            <div className='flex flex-col gap-4 items-end mt-4'>
                         <span>{user.name}</span>
                     
                         <button 
@@ -33,7 +36,7 @@ const SidebarMenu = ({ moveIn, setMoveIn }
             </div>
            
         : 
-            <div className='flex flex-col gap-4 mt-4'>
+            <div className='flex flex-col items-end mt-4'>
                 <SignInBtn />
             </div>
         }

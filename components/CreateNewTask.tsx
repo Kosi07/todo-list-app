@@ -36,7 +36,7 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
 
     function handleSelectDropDown(filteredSuggestion: string){
       setInputValue(filteredSuggestion);
-      console.log(filteredSuggestion);
+      
       setShowDropDown(false);
     }
 
@@ -78,7 +78,7 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
 
     const texts = [ 
         'Seize the day!',
-        'Add a new task...',
+        'What needs to be done?',
         'Buy groceries',
         'Do laundry',
         'Clean my room 🧹',
@@ -147,13 +147,13 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
       return response.ok
     }
     catch(err){
-      return ('Error saving to MongoDB '+err)
+      return ('Error saving to MongoDB '+ err)
     }
   }
 
 
   return (
-        <div className='h-20 w-2/3 min-w-85 max-w-250 rounded-2xl bg-linear-to-r from-orange-500 via-orange-300 to-orange-400 flex flex-col items-center mb-8 sticky top-3
+        <div className='h-20 w-2/3 min-w-85 max-w-170 rounded-2xl bg-linear-to-r from-orange-500 via-orange-300 to-orange-400 flex flex-col items-center mb-8 sticky top-3
                     shadow-lg sm:text-2xl md:text-3xl lg:text-4xl'>
             <div 
                 className='flex justify-between items-center p-4 w-full'>
@@ -191,11 +191,13 @@ const CreateNewTask = ({ fetchTasks }:{ fetchTasks: () => Promise<void> }) => {
                     .map(filteredSuggestion => 
                         <div 
                           key={filteredSuggestion} 
-                          className='bg-gray-300/60 rounded-lg w-full p-2 backdrop-blur-lg hover:text-white hover:bg-gray-700 hover:cursor-pointer' 
+                          className='bg-gray-100/70 rounded-lg shadow-xl w-full p-2 backdrop-blur-lg 
+                                hover:text-white hover:bg-gray-700 hover:cursor-pointer' 
                           onClick={()=>{console.log('onclick');handleSelectDropDown(filteredSuggestion)}}
                         >
                           {filteredSuggestion}
-                        </div>)
+                        </div>
+                      )
             }
         </div>
   )

@@ -4,7 +4,15 @@ import checkedImg from '@/public/checked2.svg';
 import trashIcon from '@/public/delete.svg';
 
 
-const Task = ({ _id, taskText, taskStatus, fetchTasks } : { _id:string, taskText: string, taskStatus: string, fetchTasks: () => Promise<void>}) => {
+const Task = ({ _id, taskText, taskStatus, fetchTasks } 
+  : 
+  { 
+    _id:string, 
+    taskText: string, 
+    taskStatus: string, 
+    fetchTasks: () => Promise<void>
+  }
+) => {
 
   let isDone
 
@@ -80,7 +88,8 @@ const Task = ({ _id, taskText, taskStatus, fetchTasks } : { _id:string, taskText
         />
 
         <div 
-            className={`overflow-auto wrap-break-word max-h-4/5 w-3/4 max-w-3/4 text-xl sm:text-2xl ${isDone? 'text-gray-400' : ''} ${isDone? 'line-through' : ''} decoration-2 decoration-black`}
+            className={`overflow-auto wrap-break-word max-h-4/5 w-3/4 max-w-3/4 text-xl sm:text-2xl 
+                        ${isDone? 'text-gray-400 line-through' : ''} decoration-2 decoration-black`}
             onClick={editTask}
         >
             {taskText}
