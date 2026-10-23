@@ -1,5 +1,37 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-paper: #F3F1EC;
+  --color-card: #FDFCFA;
+  --color-ink: #262521;
+  --color-muted: #6F6B63;
+  --color-line: #E6E2DA;
+  --color-clay: #C4562F;
+  --color-clay-soft: #FBEFE9;
+  --color-plum: #6A50B0;
+  --color-plum-soft: #F5F2FC;
+  --color-plum-line: #DDD5F2;
+  --color-moss: #4B8A60;
+  --color-moss-soft: #EDF4EF;
+  --color-moss-line: #D3E5D9;
+
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dmsans), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-sheet: sheet .28s cubic-bezier(.2,.8,.2,1);
+  --animate-pop: pop .35s ease-out;
+  @keyframes sheet { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes pop { 0% { transform: scale(.6); } 60% { transform: scale(1.12); } 100% { transform: scale(1); } }
+}
+
+html { background: #F3F1EC; }
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dmsans), ui-sans-serif, system-ui, sans-serif;
+  color: #262521;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+:focus-visible { outline: 2px solid #6A50B0; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

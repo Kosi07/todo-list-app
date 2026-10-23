@@ -20,11 +20,10 @@
 ## ToDo
 Core Functionality
 - [ ] Accountability buddy feature.
--- [ ] setLoading state /animation when something is loading
 -- [ ] Limit number of tasks to 7 from server side (Don't trust client)
 -- [ ] Tasks delete at the end of the day.How to automatically delete data from MongoDB at the end of the day.
 -- [ ] Add a friend's email or social handle
 -- [ ] You can see their tasks, they can see your tasks
 
 Design
--[ ] Task suggestions the way Google does search suggestions
+-[ ] Task suggestions the way Google does search suggestions and AI text completion if u press tab
