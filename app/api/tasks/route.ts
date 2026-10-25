@@ -2,7 +2,8 @@ import { auth } from "@/lib/auth"
 import { MongoClient, ObjectId } from "mongodb"
 import { headers } from "next/headers"
 
-const client = new MongoClient(process.env.MONGODB_URI as string)
+export const client = new MongoClient(process.env.MONGODB_URI as string)
+export const db = client.db('app')
 
 export async function POST(req: Request){
     const session = await auth.api.getSession({
@@ -20,9 +21,6 @@ export async function POST(req: Request){
         const email = session.user.email
 
         const {taskText, taskStatus} = await req.json()
-
-        //Connect to MongoDB
-        const db = client.db('app')
 
         //Save task
         const result = await db.collection('tasks').insertOne({
@@ -62,9 +60,6 @@ export async function GET() {
         }
 
         const email = session.user.email
-
-        //Connect to MongoDB
-        const db = client.db('app');
 
         //Get Tasks
         const tasks = await db.collection('tasks')
@@ -106,9 +101,6 @@ export async function PATCH(req: Request){
         }
 
         const {_id, taskStatus} = await req.json()
-
-        //Connect to MongoDB
-        const db = client.db('app')
 
         //Update taskStatus
         if(taskStatus==='in-progress'){
@@ -158,9 +150,6 @@ export async function DELETE(req: Request){
         }
 
         const {_id } = await req.json()
-
-        //Connect to MongoDB
-        const db = client.db('app')
 
         //Delete task
         await db.collection('tasks')

@@ -1,5 +1,6 @@
 import { ArrowRight, Camera, Check, Clock, Flame, Heart, Lock, Users } from "lucide-react";
 import { IMAGES } from "@/lib/images";
+import Link from "next/link";
 
 const STEPS = [
   { icon: Users, title: "Make a small promise", body: "Pick one thing you’ll do today and tell your partner. Nothing grand. Just something real." },
@@ -96,7 +97,7 @@ export default function Landing() {
       <div className="relative z-10 mx-auto max-w-5xl px-5 sm:px-8">
         <header className="flex items-center justify-between py-6 sm:py-8">
           <Logo />
-          <a href="#" className="rounded-full border border-line bg-card px-4 py-2 text-sm font-semibold text-muted hover:text-ink">Sign in</a>
+          <Link href="/sign-in" className="rounded-full border border-line bg-card px-4 py-2 text-sm font-semibold text-muted hover:text-ink">Sign in</Link>
         </header>
 
         {/* hero */}

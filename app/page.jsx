@@ -1,30 +1,21 @@
 
 import { cookie } from '@/fonts'
-import Link from 'next/link'
 import Landing from '../components/landing-page'
-import Tandem from '../components/Tandem'
+import {auth} from '@/lib/auth'
+import { headers } from 'next/headers'
+import { redirect } from 'next/navigation'
 
-export default function Home() {
-  const session = true
-  const pair = true
+export default async function Home() {
+  const session = await auth.api.getSession(
+    {headers: await headers()}
+  )
+  if(session){
+    redirect('/home')
+  }
 
-  return (     
-    <>  
-      <section></section>       
+  return (           
       <main>
         {!session && <Landing />}
-
-        {session &&
-          //fetch pair(); //check session server-side
-          pair?
-            <Tandem />
-          :
-          <>
-            {/* fetch unique invite link to be copied/shared with friend */}
-          </>
-        }
       </main>
-      <section></section>
-    </>
   )
 }
