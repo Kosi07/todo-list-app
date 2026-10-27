@@ -18,7 +18,7 @@ export async function POST(req: Request){
             )
         }
 
-        const email = session.user.email
+        const userId = session.user.id
 
         const {taskText, taskStatus} = await req.json()
 
@@ -26,7 +26,7 @@ export async function POST(req: Request){
         const result = await db.collection('tasks').insertOne({
             taskText,
             taskStatus,
-            email,
+            userId,
             createdAt: new Date(),
         })
 

@@ -5,7 +5,6 @@ import { signInWithGoogle } from "@/lib/auth-client"
 import Image from "next/image"
 import googleIcon from '@/public/google.png'
 import { useRouter } from "next/navigation";
-import H1 from "@/components/H1";
 
 const SignIn = () => {
   const router = useRouter()
@@ -15,9 +14,7 @@ const SignIn = () => {
   }
   
   return (
-    <>
-    <H1 />
-    
+    <>    
      <div 
         className='flex flex-col gap-15 m-4 p-10 border border-gray-700/20 shadow-sm rounded-xl min-w-77.5'
       >

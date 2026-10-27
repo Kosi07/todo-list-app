@@ -3,13 +3,22 @@ import {db} from '@/app/api/tasks/route'
 import { ObjectId } from 'mongodb'
 import {auth} from '@/lib/auth'
 import { headers } from 'next/headers'
+import UnpairedInvite from '../../components/UnpairedInvite'
+import { redirect } from 'next/navigation'
 
 const page = async() => {
     const session = await auth.api.getSession({
         headers: await headers()
     })
 
+    if(!session){
+      redirect('/sign-in')
+    }
+
     const userId = session.user.id
+    const name = session.user.name
+    const profilePic = session.user.image
+    const handle = session.user.handle
     console.log(userId)
 
     //fetch pair
@@ -31,7 +40,7 @@ const page = async() => {
         :
           <>
             {/* fetch unique invite link to be copied/shared with friend */}
-            Invite your friend
+            <UnpairedInvite name={name} handle={handle} profilePic={profilePic} />
           </>
     }
     </>

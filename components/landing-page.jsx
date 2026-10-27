@@ -15,14 +15,14 @@ function Logo() {
         <ellipse cx="11" cy="14" rx="9" ry="11.5" stroke="#262521" strokeWidth="2.4" />
         <ellipse cx="22" cy="14" rx="9" ry="11.5" stroke="#C4562F" strokeWidth="2.4" />
       </svg>
-      <span className="font-display text-xl font-bold tracking-tight">Tandem</span>
+      <span className="font-display text-xl font-bold tracking-tight">Tackl</span>
     </div>
   );
 }
 
 function Cta({ children = "Start with your partner", className = "" }) {
   return (
-    <a href="#" className={`inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-ink px-7 font-display font-semibold text-white transition hover:bg-black active:scale-[.98] ${className}`}>
+    <a href='/sign-in' className={`inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-ink px-7 font-display font-semibold text-white transition hover:bg-black active:scale-[.98] ${className}`}>
       {children} <ArrowRight className="h-4 w-4" />
     </a>
   );
@@ -32,14 +32,12 @@ function Cta({ children = "Start with your partner", className = "" }) {
 function AppPreview() {
   return (
     <div className="relative mx-auto w-full max-w-sm">
-      <div className="rounded-[2rem] border border-line bg-card/90 p-4 shadow-[0_30px_60px_-30px_rgba(38,37,33,.35)] sm:p-5">
+      <div className="rounded-4xl border border-line bg-card/90 p-4 shadow-[0_30px_60px_-30px_rgba(38,37,33,.35)] sm:p-5">
         <div className="flex items-center justify-center gap-3 rounded-3xl border border-line bg-card px-3 py-5">
           {[["Alex", IMAGES.alex, "#C4562F"], ["Maya", IMAGES.maya, "#6A50B0"]].map(([n, src, c], i) => (
             <div key={n} className="flex items-center gap-3">
               {i === 1 && (
-                <span className="grid h-8 w-8 place-items-center rounded-full border border-clay/20 bg-clay-soft">
-                  <Heart className="h-3.5 w-3.5 fill-clay text-clay" />
-                </span>
+                <span className="grid h-8 w-8 place-items-center rounded-full border border-clay/20 bg-clay-soft"></span>
               )}
               <div className="flex flex-col items-center gap-1.5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -91,9 +89,6 @@ function AppPreview() {
 export default function Landing() {
   return (
     <div className="relative overflow-x-clip bg-paper text-ink">
-      <div aria-hidden className="pointer-events-none absolute -left-40 top-64 -z-0 h-96 w-96 rounded-full bg-[#F0E6D8]/70 blur-3xl" />
-      <div aria-hidden className="pointer-events-none absolute -right-48 top-[44rem] -z-0 h-[28rem] w-[28rem] rounded-full bg-[#E9E4F2]/70 blur-3xl" />
-
       <div className="relative z-10 mx-auto max-w-5xl px-5 sm:px-8">
         <header className="flex items-center justify-between py-6 sm:py-8">
           <Logo />
@@ -148,7 +143,7 @@ export default function Landing() {
 
         {/* final cta */}
         <section className="pb-16">
-          <div className="rounded-[2rem] border border-line bg-card/90 px-6 py-12 text-center shadow-[0_10px_30px_-18px_rgba(38,37,33,.25)] sm:py-16">
+          <div className="rounded-4xl border border-line bg-card/90 px-6 py-12 text-center shadow-[0_10px_30px_-18px_rgba(38,37,33,.25)] sm:py-16">
             <h2 className="mx-auto max-w-xl font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">Who’s your person?</h2>
             <p className="mx-auto mt-3 max-w-md text-muted">Invite them, make your first promise today and see how it feels to be approved.</p>
             <Cta className="mt-8" />
@@ -157,7 +152,7 @@ export default function Landing() {
 
         <footer className="flex flex-col items-center justify-between gap-3 border-t border-line py-8 text-sm text-muted sm:flex-row">
           <Logo />
-          <p>© {new Date().getFullYear()} Tandem. Small promises, kept.</p>
+          <p>© {new Date().getFullYear()} Tackl. Small promises, kept.</p>
         </footer>
       </div>
     </div>
