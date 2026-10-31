@@ -3,14 +3,14 @@
 // Save as app/join/[code]/page.js
 // Shown to a signed-in person who opened an invite link. A pair request has been sent to the inviter.
 // Uses the Tailwind v4 theme in app/globals.css and the image URLs in lib/images.js.
-// Replace INVITER / ME with real data and wire the TODOs (poll status, cancel request).
+// Replace inviter / ME with real data and wire the TODOs (poll status, cancel request).
 
 import { useEffect, useState } from "react";
 import { ArrowRight, Check, Heart, Send, X } from "lucide-react";
 import { IMAGES } from "@/lib/images";
 
 const ME = { name: "Maya", avatar: IMAGES.maya };
-const INVITER = { name: "Alex", avatar: IMAGES.alex };
+const inviter = { name: "Alex", avatar: IMAGES.alex };
 
 function Logo() {
   return (
@@ -19,7 +19,7 @@ function Logo() {
         <ellipse cx="11" cy="14" rx="9" ry="11.5" stroke="#262521" strokeWidth="2.4" />
         <ellipse cx="22" cy="14" rx="9" ry="11.5" stroke="#C4562F" strokeWidth="2.4" />
       </svg>
-      <span className="font-display text-xl font-bold tracking-tight">Tandem</span>
+      <span className="font-display text-xl font-bold tracking-tight">Tackl</span>
     </div>
   );
 }
@@ -37,7 +37,7 @@ function Person({ person, label, ring, align }) {
   return (
     <div className={`flex min-w-0 flex-1 flex-col items-center gap-3 sm:flex-row sm:gap-4 ${align === "right" ? "sm:flex-row-reverse" : ""}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={person.avatar} alt={`${person.name}'s photo`} className={`h-[76px] w-[76px] rounded-full object-cover ring-[3.5px] ring-offset-[3px] ring-offset-card ${ring}`} />
+      <img src={person.avatar} alt={`${person.name}'s photo`} className={`h-19 w-19 rounded-full object-cover ring-[3.5px] ring-offset-[3px] ring-offset-card ${ring}`} />
       <div className={`text-center ${align === "right" ? "sm:text-right" : "sm:text-left"}`}>
         <p className="text-xs text-muted">{label}</p>
         <p className="font-display text-xl font-bold leading-tight">{person.name}</p>
@@ -46,7 +46,7 @@ function Person({ person, label, ring, align }) {
   );
 }
 
-export default function InviteeWaiting() {
+export default function InviteeWaiting({user, inviter}) {
   const [status, setStatus] = useState("pending"); // "pending" | "accepted" | "cancelled"
   const accepted = status === "accepted";
 
@@ -73,25 +73,25 @@ export default function InviteeWaiting() {
       <header className="flex items-center justify-between">
         <Logo />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={ME.avatar} alt={`${ME.name}'s photo`} className="h-10 w-10 rounded-full object-cover ring-2 ring-line" />
+        <img src={user.img} alt={`${user.name}'s photo`} className="h-10 w-10 rounded-full object-cover ring-2 ring-line" />
       </header>
 
       {status === "cancelled" ? (
         <section className="mt-16 text-center">
           <h1 className="font-display text-4xl font-extrabold tracking-tight">Request cancelled</h1>
-          <p className="mx-auto mt-3 max-w-sm text-lg text-muted">{INVITER.name} won’t be notified. You can use their invite link again any time.</p>
+          <p className="mx-auto mt-3 max-w-sm text-lg text-muted">{inviter.name} won’t be notified. You can use their invite link again any time.</p>
         </section>
       ) : (
         <>
           <section className="mt-10 sm:mt-14">
-            <p className="text-sm text-muted">{accepted ? "You’re in" : `Invited by ${INVITER.name}`}</p>
+            <p className="text-sm text-muted">{accepted ? "You’re in" : `Invited by ${inviter.name}`}</p>
             <h1 className="mt-1.5 font-display text-[2.6rem] font-extrabold leading-[1.02] tracking-tight sm:text-6xl">
               {accepted ? "You’re paired." : "Request sent."}
             </h1>
             <p className="mt-3 max-w-md text-lg text-muted">
               {accepted
-                ? `${INVITER.name} accepted. Your shared dashboard is ready.`
-                : `We’ve asked ${INVITER.name} to pair with you. As soon as they accept, you can start.`}
+                ? `${inviter.name} accepted. Your shared dashboard is ready.`
+                : `We’ve asked ${inviter.name} to pair with you. As soon as they accept, you can start.`}
             </p>
           </section>
 
@@ -105,17 +105,17 @@ export default function InviteeWaiting() {
                 </span>
                 <span className={`hidden flex-1 border-t sm:block ${accepted ? "border-moss" : "border-dashed border-[#CFCABF]"}`} />
               </div>
-              <Person person={INVITER} label="Partner" ring="ring-clay" align="right" />
+              <Person person={inviter} label="Partner" ring="ring-clay" align="right" />
             </div>
           </section>
 
           {/* status */}
           {accepted ? (
-            <section className="mt-6 rounded-[2rem] border border-moss-line bg-moss-soft/60 p-5 sm:p-7">
+            <section className="mt-6 rounded-4xl border border-moss-line bg-moss-soft/60 p-5 sm:p-7">
               <div className="flex items-center gap-4">
                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-moss text-white motion-safe:animate-pop"><Check className="h-5 w-5" strokeWidth={3} /></span>
                 <div>
-                  <p className="font-display text-lg font-bold">{INVITER.name} accepted your request</p>
+                  <p className="font-display text-lg font-bold">{inviter.name} accepted your request</p>
                   <p className="text-sm text-muted">Make your first small promise together.</p>
                 </div>
               </div>
@@ -124,20 +124,20 @@ export default function InviteeWaiting() {
               </a>
             </section>
           ) : (
-            <section className="mt-6 rounded-[2rem] border border-plum-line bg-plum-soft p-5 sm:p-7">
+            <section className="mt-6 rounded-4xl border border-plum-line bg-plum-soft p-5 sm:p-7">
               <div className="flex items-center gap-4">
                 <Spinner />
                 <div>
-                  <p className="font-display text-lg font-bold text-plum">Waiting for {INVITER.name}’s approval</p>
+                  <p className="font-display text-lg font-bold text-plum">Waiting for {inviter.name}’s approval</p>
                   <p className="flex items-center gap-1.5 text-sm text-muted"><Send className="h-3.5 w-3.5" /> Request sent just now</p>
                 </div>
               </div>
               <ol className="mt-5 space-y-3 border-t border-plum-line pt-5 text-[15px] text-muted">
-                <li className="flex gap-3"><span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-moss text-white"><Check className="h-3.5 w-3.5" strokeWidth={3} /></span> You opened {INVITER.name}’s invite</li>
-                <li className="flex gap-3"><span className="grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-plum bg-card text-xs font-bold text-plum">2</span> {INVITER.name} accepts your request</li>
+                <li className="flex gap-3"><span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-moss text-white"><Check className="h-3.5 w-3.5" strokeWidth={3} /></span> You opened {inviter.name}’s invite</li>
+                <li className="flex gap-3"><span className="grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-plum bg-card text-xs font-bold text-plum">2</span> {inviter.name} accepts your request</li>
                 <li className="flex gap-3"><span className="grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-[#CFCABF] bg-card text-xs font-bold text-[#B9B4AA]">3</span> You both land on your shared dashboard</li>
               </ol>
-              <p className="mt-5 rounded-2xl bg-card/70 px-4 py-3 text-sm text-muted">You can close this page. We’ll let you know when {INVITER.name} accepts.</p>
+              <p className="mt-5 rounded-2xl bg-card/70 px-4 py-3 text-sm text-muted">You can close this page. We’ll let you know when {inviter.name} accepts.</p>
             </section>
           )}
 
@@ -153,7 +153,7 @@ export default function InviteeWaiting() {
           {!accepted && (
             <div className="mt-8 rounded-2xl border border-dashed border-line p-3 text-center">
               <p className="mb-2 text-xs text-muted">Demo only</p>
-              <button onClick={() => setStatus("accepted")} className="h-10 rounded-xl bg-moss/10 px-4 text-sm font-semibold text-moss">Simulate {INVITER.name} accepting</button>
+              <button onClick={() => setStatus("accepted")} className="h-10 rounded-xl bg-moss/10 px-4 text-sm font-semibold text-moss">Simulate {inviter.name} accepting</button>
             </div>
           )}
         </>

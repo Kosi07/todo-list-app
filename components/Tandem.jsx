@@ -38,7 +38,7 @@ function Ring({ pct, color, size = 76, stroke = 3.5, children }) {
           style={{ transition: "stroke-dashoffset .7s cubic-bezier(.2,.8,.2,1)" }}
         />
       </svg>
-      <div className="absolute inset-[7px] overflow-hidden rounded-full bg-line">{children}</div>
+      <div className="absolute inset-1.75 overflow-hidden rounded-full bg-line">{children}</div>
     </div>
   );
 }
@@ -220,7 +220,7 @@ function Sheet({ onClose, label, children }) {
   return (
     <div className="fixed inset-0 z-40 flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={label}>
       <div className="absolute inset-0 bg-ink/45 backdrop-blur-[3px]" onClick={onClose} />
-      <div className="relative max-h-[92dvh] w-full max-w-md animate-sheet overflow-y-auto rounded-t-[2rem] bg-card shadow-2xl sm:rounded-[2rem]">
+      <div className="relative max-h-[92dvh] w-full max-w-md animate-sheet overflow-y-auto rounded-t-4xl bg-card shadow-2xl sm:rounded-4xl">
         <button onClick={onClose} aria-label="Close" className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full bg-black/45 text-white backdrop-blur hover:bg-black/60">
           <X className="h-5 w-5" />
         </button>
@@ -232,10 +232,10 @@ function Sheet({ onClose, label, children }) {
 
 function ProofHero({ src }) {
   return (
-    <div className="relative aspect-[8/5] w-full bg-line">
+    <div className="relative aspect-8/5 w-full bg-line">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt="Proof of completion" className="h-full w-full object-cover" />
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/45 to-transparent px-5 pb-3 pt-10">
+      <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/45 to-transparent px-5 pb-3 pt-10">
         <span className="text-[11px] font-bold uppercase tracking-[.12em] text-white">Proof of completion</span>
       </div>
     </div>
@@ -269,7 +269,7 @@ function SubmitSheet({ task, onClose, onSubmit }) {
         {preview ? (
           <div className="relative mt-5 overflow-hidden rounded-3xl border border-line">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={preview} alt="Your proof photo" className="aspect-[8/5] w-full object-cover" />
+            <img src={preview} alt="Your proof photo" className="aspect-8/5 w-full object-cover" />
             <button onClick={() => input.current?.click()} className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3.5 py-2 text-sm font-semibold shadow backdrop-blur">
               Retake
             </button>
@@ -277,7 +277,7 @@ function SubmitSheet({ task, onClose, onSubmit }) {
         ) : (
           <button
             onClick={() => input.current?.click()}
-            className={`mt-5 flex aspect-[8/5] w-full flex-col items-center justify-center gap-2 rounded-3xl border-2 border-dashed text-center transition ${error ? "border-clay bg-clay-soft" : "border-[#CFCABF] bg-paper hover:border-clay"}`}
+            className={`mt-5 flex aspect-8/5 w-full flex-col items-center justify-center gap-2 rounded-3xl border-2 border-dashed text-center transition ${error ? "border-clay bg-clay-soft" : "border-[#CFCABF] bg-paper hover:border-clay"}`}
           >
             <span className="grid h-12 w-12 place-items-center rounded-full bg-card shadow-sm">
               <ImagePlus className="h-6 w-6 text-clay" />
@@ -451,12 +451,9 @@ export default function Tandem() {
   };
 
   return (
-    <main className="relative mx-auto min-h-dvh max-w-2xl overflow-x-clip px-5 pb-24 pt-6 sm:px-8 sm:pt-10">
-      {/* soft background shapes */}
-      <div aria-hidden className="pointer-events-none absolute -left-40 top-56 -z-10 h-80 w-80 rounded-full bg-[#F0E6D8]/70 blur-2xl" />
-      <div aria-hidden className="pointer-events-none absolute -right-44 top-[34rem] -z-10 h-96 w-96 rounded-full bg-[#E9E4F2]/70 blur-2xl" />
+    <main className="relative mx-auto min-h-dvh max-w-2xl overflow-x-clip px-5 pb-24 pt-6 sm:px-8">
 
-      <header className="flex items-center justify-between">
+      <header className="flex items-center justify-between lg:hidden">
         <div className="flex items-center gap-2.5">
           <svg width="34" height="28" viewBox="0 0 34 28" fill="none" aria-hidden>
             <ellipse cx="11" cy="14" rx="9" ry="11.5" stroke="#262521" strokeWidth="2.4" />
@@ -469,14 +466,14 @@ export default function Tandem() {
         </div>
       </header>
 
-      <section className="mt-10 sm:mt-14">
+      <section className="mt-10">
         <p className="text-sm text-muted">Thursday, October 22</p>
         <h1 className="mt-1.5 font-display text-[2.6rem] font-extrabold leading-[1.02] tracking-tight sm:text-6xl">Keep each other moving.</h1>
         <p className="mt-3 text-lg text-muted">Small promises. Shared progress.</p>
       </section>
 
       {/* partnership */}
-      <section aria-label="Partners" className="mt-8 rounded-[2rem] border border-line bg-card/90 px-4 py-7 shadow-[0_10px_30px_-18px_rgba(38,37,33,.25)] sm:px-8 sm:py-9">
+      <section aria-label="Partners" className="mt-8 rounded-4xl border border-line bg-card/90 px-4 py-7 shadow-[0_10px_30px_-18px_rgba(38,37,33,.25)] sm:px-8 sm:py-9">
         <div className="flex items-start justify-center gap-1 sm:items-center">
           <Profile person={PEOPLE.you} pct={pct("you")} />
           <div className="flex shrink-0 items-center self-center pt-0 sm:w-28" aria-hidden>
