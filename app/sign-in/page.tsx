@@ -4,13 +4,15 @@ import { signInWithGoogle } from "@/lib/auth-client"
 
 import Image from "next/image"
 import googleIcon from '@/public/google.png'
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const SignIn = () => {
-  const router = useRouter()
+  const searchParams = useSearchParams()
+  const url = searchParams.get('redirect')
+  console.log(url, 'url')
 
   const handleClick = async() => {
-    await signInWithGoogle().then(()=>router.push('/'))
+    await signInWithGoogle(url)
   }
   
   return (
